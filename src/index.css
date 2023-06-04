@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-[2em] font-medium my-2;
+  }
+  h2 {
+    @apply font-medium text-[1.5em] my-2;
+  }
+}
+@layer components {
+  .none {
+    display: none;
+  }
+  .tap-transparent {
+    -webkit-tap-highlight-color: transparent;
+  }
+  .collapsible-wrapper {
+    overflow: hidden;
+  }
+  .collapsible-wrapper:after {
+    content: '';
+    height: 50px;
+    transition: height .3s linear,max-height 0s .3s linear;
+    max-height: 0px;
+  }
+  .collapsible {
+    transition: margin-bottom 0.3s cubic-bezier(0, 0, 0, 1);
+    margin-bottom: 0;
+    max-height: 100000px;
+
+  }
+  .collapsible-wrapper.collapsed > .collapsible {
+    margin-bottom: -2000px;
+    transition: margin-bottom 0.3s cubic-bezier(1, 0, 1, 1),
+              visibility 0s 0.3s, max-height 0s 0.3s;
+    visibility: hidden;
+    max-height: 0;
+  }
+  .collapsible-wrapper.collapsed:after {
+    height: 0;
+    transition: height 0.3s linear;
+    max-height: 50px;
+  }
+}
+@layer utilities {
+  @media screen and (max-width: 1536px) {
+    .bg__color-blob--right,
+    .bg__color-blob--left {
+      font-size: 0.89rem;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .bg__color-blob--right,
+    .bg__color-blob--left {
+      font-size: 0.8rem;
+    }
+  }
+  @media screen and (max-width: 375px) {
+    .bg__color-blob--right,
+    .bg__color-blob--left {
+      font-size: 0.6rem;
+    }
+  }
+  .bg__color-blob--right,
+  .bg__color-blob--left {
+    content: "";
+    position: absolute;
+    background-color: hsl(231, 69%, 60%);
+    width: 28em;
+    height: 16.5em;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 2s ease;
+  }
+  .bg__color-blob--right {
+    right: -7px;
+    bottom: 0;
+    border-radius: 8.4em 0 0 8.4em;
+    opacity: 1;
+  }
+  .bg__color-blob--left {
+    left: -1em;
+    bottom: 0;
+    border-radius: 0 8.4em 8.4em 0;
+    opacity: 1;
+  }
+  .tablist-item-wrapper {
+    @apply w-full text-center border-b-gray-400 border-solid border-b-[1px] xl:w-auto xl:border-b-0;
+  }
+  .tablist-item {
+    @apply relative p-4 px-6  after:content-[''] after:absolute after:inset-0 after:border-b-transparent after:border-b-4 after:border-solid hover:text-soft-red transition-colors;
+  }
+  .tablist-item.active {
+    @apply text-very-dark-blue after:border-b-soft-red;
+  }
+  a.link:hover {
+    @apply text-soft-red;
+  }
+  a.link:hover svg {
+    @apply text-soft-red;
+  }
+  .modal__children-container {
+    @apply py-6 h-full w-full max-w-full m-0 bg-very-dark-blue bg-opacity-90;
+  }
+}
